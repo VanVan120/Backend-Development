@@ -310,8 +310,8 @@ async def subscribe_newsletter(request: SubscribeRequest):
     sender_email = os.getenv("EMAIL_SENDER")
     sender_password = os.getenv("EMAIL_PASSWORD")
     recipient_email = os.getenv("EMAIL_RECIPIENT")
-    # Get Base URL from env or default to localhost for testing
-    base_url = os.getenv("BASE_URL", "http://127.0.0.1:8000")
+    # Get Base URL from env or default to the Hugging Face Space URL
+    base_url = os.getenv("BASE_URL", "https://ivanjun-oral-ai-cancer-disease-detection.hf.space")
 
     # Clean up credentials (remove potential spaces or newlines)
     if sender_email: sender_email = sender_email.strip()
