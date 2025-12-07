@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Terms of Service</li>
+                    </ol>
+                </nav>
+                
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-header bg-white p-5 border-bottom border-light">
+                        <h1 class="display-5 fw-bold text-dark mb-2">Terms of Service</h1>
+                        <p class="text-muted mb-0">Effective Date: December 4, 2025</p>
+                    </div>
+                    <div class="card-body p-5">
+                        <div class="alert alert-warning border-0 rounded-3 mb-5">
+                            <div class="d-flex">
+                                <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+                                <div>
+                                    <h5 class="alert-heading fw-bold">Medical Disclaimer</h5>
+                                    <p class="mb-0">Oral AI is a clinical support tool designed to assist dental professionals. It is <strong>not</strong> a replacement for professional medical advice, diagnosis, or treatment. Always seek the advice of a qualified health provider with any questions you may have regarding a medical condition.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">1. Acceptance of Terms</h3>
+                            <p class="text-secondary">
+                                By accessing or using the Oral AI platform, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">2. Use of Services</h3>
+                            <p class="text-secondary mb-3">You agree to use our services only for lawful purposes and in accordance with these Terms. You specifically agree not to:</p>
+                            <ul class="list-unstyled text-secondary">
+                                <li class="mb-2">&bull; Upload malicious code, viruses, or harmful data.</li>
+                                <li class="mb-2">&bull; Attempt to reverse engineer our AI models or software.</li>
+                                <li class="mb-2">&bull; Use the platform to misdiagnose or harm patients intentionally.</li>
+                                <li class="mb-2">&bull; Upload data for which you do not have the necessary consent or rights.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">3. Intellectual Property</h3>
+                            <p class="text-secondary">
+                                The Oral AI platform, including its algorithms, source code, design, and content, is the exclusive property of Oral AI and its licensors. The generated reports are provided for your use in clinical practice or personal monitoring.
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">4. Limitation of Liability</h3>
+                            <p class="text-secondary">
+                                To the fullest extent permitted by law, Oral AI shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or goodwill, arising out of your use of the service.
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">5. Termination</h3>
+                            <p class="text-secondary">
+                                We reserve the right to terminate or suspend your access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

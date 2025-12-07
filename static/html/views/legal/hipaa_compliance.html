@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">HIPAA Compliance</li>
+                    </ol>
+                </nav>
+                
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-header bg-white p-5 border-bottom border-light">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-shield-alt fa-3x text-success me-3"></i>
+                            <h1 class="display-5 fw-bold text-dark mb-0">HIPAA Compliance</h1>
+                        </div>
+                        <p class="text-muted mb-0">Our commitment to protecting Protected Health Information (PHI).</p>
+                    </div>
+                    <div class="card-body p-5">
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">Overview</h3>
+                            <p class="text-secondary leading-relaxed">
+                                Oral AI is fully committed to compliance with the Health Insurance Portability and Accountability Act (HIPAA) of 1996. We have implemented robust physical, technical, and administrative safeguards to ensure the confidentiality, integrity, and availability of all Protected Health Information (PHI) processed by our system.
+                            </p>
+                        </div>
+
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-6">
+                                <div class="p-4 bg-light rounded-4 h-100 border">
+                                    <h5 class="fw-bold text-dark mb-3"><i class="fas fa-lock text-primary me-2"></i> Technical Safeguards</h5>
+                                    <ul class="list-unstyled text-secondary mb-0">
+                                        <li class="mb-2">&bull; End-to-end encryption (AES-256) for data transmission.</li>
+                                        <li class="mb-2">&bull; Automatic session timeouts and secure authentication.</li>
+                                        <li class="mb-2">&bull; Strict access controls and audit logs for all data access.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-4 bg-light rounded-4 h-100 border">
+                                    <h5 class="fw-bold text-dark mb-3"><i class="fas fa-user-shield text-primary me-2"></i> Administrative Safeguards</h5>
+                                    <ul class="list-unstyled text-secondary mb-0">
+                                        <li class="mb-2">&bull; Regular security training for all personnel.</li>
+                                        <li class="mb-2">&bull; Business Associate Agreements (BAA) with all vendors.</li>
+                                        <li class="mb-2">&bull; Comprehensive incident response and breach notification plans.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">Data Handling & De-identification</h3>
+                            <p class="text-secondary">
+                                Our AI models are trained on de-identified datasets in strict accordance with the HIPAA Privacy Rule. When you upload patient imagery for analysis:
+                            </p>
+                            <ol class="text-secondary">
+                                <li class="mb-2">Data is processed in a transient, secure memory state.</li>
+                                <li class="mb-2">No PHI is permanently stored on our inference servers unless explicitly authorized for patient records.</li>
+                                <li class="mb-2">All metadata is stripped before any potential use in model improvement (if opted-in).</li>
+                            </ol>
+                        </div>
+
+                        <div class="alert alert-info border-0 rounded-3">
+                            <h5 class="alert-heading fw-bold"><i class="fas fa-info-circle me-2"></i> Business Associate Agreement (BAA)</h5>
+                            <p class="mb-0">
+                                For enterprise clients and healthcare institutions, we offer a signed Business Associate Agreement (BAA) to formalize our responsibilities regarding your PHI. Please contact our compliance team to request a BAA.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

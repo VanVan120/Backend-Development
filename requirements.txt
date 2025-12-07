@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+python-multipart
+torch
+torchvision
+ultralytics
+opencv-python
+pillow
+numpy
+scikit-learn
+flask
+werkzeug
+fpdf
+google-generativeai
+python-dotenv
+sahi

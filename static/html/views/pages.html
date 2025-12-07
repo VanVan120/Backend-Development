@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- ==================== HERO SECTION ==================== -->
+    <div class="hero-section" style="padding: 6rem 0 4rem 0;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h5 class="ai-subtitle text-uppercase mb-3 fs-3">Industry Insights</h5>
+                    <h1 class="display-3 fw-bold text-dark mb-4 page-title-interactive">The Era of Medical AI</h1>
+                    <p class="lead text-muted mb-5 mx-auto" style="max-width: 700px;">
+                        Discover how Artificial Intelligence is reshaping the landscape of healthcare, from early diagnosis to personalized treatment plans.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NEWS GRID ==================== -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row g-4">
+                
+                <!-- Article 1 -->
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all overflow-hidden">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-5 position-relative" style="min-height: 250px;">
+                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover position-absolute" alt="AI Diagnostics">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body p-4 d-flex flex-column h-100">
+                                    <div class="mb-2">
+                                        <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-1">Diagnostics</span>
+                                        <small class="text-muted ms-2">Dec 5, 2025</small>
+                                    </div>
+                                    <h3 class="h4 fw-bold text-dark mb-3">AI Outperforms Human Experts in Early Cancer Detection</h3>
+                                    <p class="text-muted small mb-4 flex-grow-1">Recent studies show deep learning models achieving 99% accuracy in identifying early-stage anomalies in medical imaging, significantly reducing false negatives.</p>
+                                    <a href="https://www.news-medical.net/news/20250102/AI-based-models-can-outperform-human-experts-at-identifying-ovarian-cancer.aspx" target="_blank" class="text-primary fw-bold text-decoration-none">Read Full Story <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all overflow-hidden">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-5 position-relative" style="min-height: 250px;">
+                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover position-absolute" alt="Robotic Surgery">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body p-4 d-flex flex-column h-100">
+                                    <div class="mb-2">
+                                        <span class="badge bg-success-subtle text-success rounded-pill px-3 py-1">Robotics</span>
+                                        <small class="text-muted ms-2">Nov 28, 2025</small>
+                                    </div>
+                                    <h3 class="h4 fw-bold text-dark mb-3">Precision Surgery: The Rise of AI-Assisted Operations</h3>
+                                    <p class="text-muted small mb-4 flex-grow-1">Surgeons are now leveraging AI-powered robotic arms to perform complex procedures with sub-millimeter precision, minimizing recovery time for patients.</p>
+                                    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12181090/" target="_blank" class="text-primary fw-bold text-decoration-none">Read Full Story <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative" style="height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover" alt="Drug Discovery">
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <span class="badge bg-info-subtle text-info rounded-pill px-3 py-1">Pharma</span>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-3">Accelerating Drug Discovery</h4>
+                            <p class="text-muted small mb-4">Generative AI is slashing drug development timelines from years to months by predicting molecular interactions.</p>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11510778/" target="_blank" class="text-primary fw-bold text-decoration-none">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative" style="height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover" alt="Personalized Medicine">
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <span class="badge bg-warning-subtle text-warning rounded-pill px-3 py-1">Genomics</span>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-3">Hyper-Personalized Medicine</h4>
+                            <p class="text-muted small mb-4">AI algorithms analyzing genomic data can now tailor treatment plans specifically to an individual's DNA profile.</p>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10617817/" target="_blank" class="text-primary fw-bold text-decoration-none">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative" style="height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover" alt="Virtual Assistants">
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <span class="badge bg-danger-subtle text-danger rounded-pill px-3 py-1">Patient Care</span>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-3">24/7 Virtual Health Assistants</h4>
+                            <p class="text-muted small mb-4">LLM-powered chatbots are providing instant, accurate medical triage and mental health support globally.</p>
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11140094/" target="_blank" class="text-primary fw-bold text-decoration-none">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-6 fw-bold text-dark mb-4">Join the Revolution</h2>
+                    <p class="lead text-muted mb-5">Oral AI is at the forefront of this transformation. Experience our cutting-edge diagnostic tools today.</p>
+                    <button class="btn btn-primary btn-lg rounded-pill px-5 py-3 shadow-sm" onclick="showAnalysis()">
+                        Try Oral AI Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- ==================== HERO SECTION ==================== -->
+    <div class="hero-section" style="padding: 6rem 0 4rem 0;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h5 class="ai-subtitle text-uppercase mb-3 fs-3">The Oral AI Journal</h5>
+                    <h1 class="display-3 fw-bold text-dark mb-4 page-title-interactive">Insights, Updates & Stories</h1>
+                    <p class="lead text-muted mb-5 mx-auto" style="max-width: 700px;">
+                        Deep dives into our technology, patient health guides, and the future of AI in dentistry.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FEATURED POST ==================== -->
+    <section class="pb-5">
+        <div class="container">
+            <div class="card border-0 shadow-lg overflow-hidden rounded-4">
+                <div class="row g-0">
+                    <div class="col-lg-7 position-relative" style="min-height: 400px;">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000" class="img-fluid w-100 h-100 object-fit-cover position-absolute" alt="AI Architecture">
+                    </div>
+                    <div class="col-lg-5 bg-dark text-white d-flex align-items-center">
+                        <div class="card-body p-5">
+                            <div class="mb-3">
+                                <span class="badge bg-primary rounded-pill px-3 py-2">Engineering</span>
+                                <span class="text-white-50 ms-2">Dec 10, 2025</span>
+                            </div>
+                            <h2 class="display-6 fw-bold mb-4">The Architecture of Accuracy: Inside Oral AI's Dual-Model System</h2>
+                            <p class="lead text-white-50 mb-4">
+                                How we combined a Triage Router with specialized Clinical and Histopathological models to achieve 99.8% diagnostic precision.
+                            </p>
+                            <a href="https://research.google/blog/amie-a-research-ai-system-for-diagnostic-medical-reasoning-and-conversations/" target="_blank" class="btn btn-outline-light rounded-pill px-4 py-2">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== RECENT POSTS GRID ==================== -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row mb-5 align-items-end">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="bg-primary rounded-pill me-2" style="width: 40px; height: 4px;"></span>
+                        <h5 class="text-primary fw-bold text-uppercase m-0">Our Blog</h5>
+                    </div>
+                    <h2 class="display-5 fw-bold text-dark">Latest Articles</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Post 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all rounded-4 overflow-hidden">
+                        <div class="card-img-top position-relative overflow-hidden" style="height: 240px;">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Oral Health Signs">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-white text-dark shadow-sm rounded-pill px-3 py-2 fw-bold">Dec 8</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="mb-3">
+                                <span class="badge bg-success-subtle text-success rounded-pill px-3 py-1">Patient Health</span>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-3"><a href="https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/dental-health/art-20047475" target="_blank" class="text-decoration-none text-dark stretched-link">5 Early Signs of Oral Health Issues You Shouldn't Ignore</a></h4>
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                From subtle discoloration to minor sensitivity, learn what your mouth is trying to tell you before it becomes a major problem.
+                            </p>
+                            <div class="mt-auto">
+                                <span class="text-primary fw-bold text-decoration-none">Read Article <i class="fas fa-arrow-right ms-1"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all rounded-4 overflow-hidden">
+                        <div class="card-img-top position-relative overflow-hidden" style="height: 240px;">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Data Team">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-white text-dark shadow-sm rounded-pill px-3 py-2 fw-bold">Dec 1</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="mb-3">
+                                <span class="badge bg-info-subtle text-info rounded-pill px-3 py-1">Behind the Scenes</span>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-3"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10164664/" target="_blank" class="text-decoration-none text-dark stretched-link">From Data to Diagnosis: How We Built Our Dataset</a></h4>
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                A look at the rigorous curation process our Dataset Team uses to ensure our AI learns from the highest quality medical imagery.
+                            </p>
+                            <div class="mt-auto">
+                                <span class="text-primary fw-bold text-decoration-none">Read Article <i class="fas fa-arrow-right ms-1"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all rounded-4 overflow-hidden">
+                        <div class="card-img-top position-relative overflow-hidden" style="height: 240px;">
+                            <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&q=80&w=500" class="img-fluid w-100 h-100 object-fit-cover" style="transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Tele-Dentistry">
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="badge bg-white text-dark shadow-sm rounded-pill px-3 py-2 fw-bold">Nov 25</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="mb-3">
+                                <span class="badge bg-warning-subtle text-warning rounded-pill px-3 py-1">Future Tech</span>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-3"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9748636/" target="_blank" class="text-decoration-none text-dark stretched-link">The Future of Tele-Dentistry: AI as a First Responder</a></h4>
+                            <p class="text-muted small mb-4 flex-grow-1">
+                                Imagine getting a preliminary diagnosis from your smartphone. Here's how Oral AI is making remote screening a reality.
+                            </p>
+                            <div class="mt-auto">
+                                <span class="text-primary fw-bold text-decoration-none">Read Article <i class="fas fa-arrow-right ms-1"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

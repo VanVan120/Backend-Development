@@ -1,0 +1,137 @@
+    <!-- ==================== MODEL B VIEW (Clinical) ==================== -->
+    <!-- AI Suggestion Modal -->
+    <div class="modal fade" id="aiSuggestionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header ai-theme-gradient border-0 p-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="position-relative">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center bg-white/10 backdrop-blur-sm shadow-inner" 
+                                 style="width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1);">
+                                <i class="fas fa-robot fs-5 text-white"></i>
+                            </div>
+                            <div class="position-absolute bottom-0 end-0 border border-2 border-dark rounded-circle" 
+                                 style="width: 12px; height: 12px; background-color: #22c55e; box-shadow: 0 0 0 2px #0f172a;"></div>
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold mb-0 text-white">AI Assistant</h5>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="d-inline-block rounded-circle bg-success" style="width: 6px; height: 6px; box-shadow: 0 0 8px #22c55e;"></span>
+                                <small class="text-white-50">Smart Analysis Insight</small>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" style="background-color: #f8fafc; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 24px 24px;">
+                    <div class="bg-white p-4 rounded-4 shadow-sm border border-light-subtle">
+                        <div class="d-flex gap-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-quote-left text-primary opacity-25 display-6"></i>
+                            </div>
+                            <div>
+                                <p id="ai-suggestion-text" class="fs-5 text-dark mb-0" style="line-height: 1.6;">
+                                    Analysis in progress...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-light p-3 justify-content-center">
+                    <small class="text-muted"><i class="fas fa-info-circle me-1"></i> AI generated suggestion. Always consult a specialist.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="model-b-view" class="hidden-section container">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold page-title-interactive">Clinical Screening</h1>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card">
+                    <div class="card-body p-5">
+                        <div class="row align-items-stretch">
+                            <!-- Left: Image Result -->
+                            <div class="col-lg-7 mb-4 mb-lg-0 d-flex flex-column">
+                                <div class="preview-image-container h-100 d-flex flex-column justify-content-center align-items-center p-0 bg-white overflow-hidden position-relative">
+                                    <div class="position-relative w-100 h-100 d-flex justify-content-center align-items-center" style="min-height: 400px;">
+                                        <img id="mb-preview-image" class="position-absolute top-0 start-0 w-100 h-100 object-fit-contain" />
+                                        <canvas id="mb-result-canvas" class="position-absolute top-0 start-0 w-100 h-100 object-fit-contain pe-none"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Results -->
+                            <div class="col-lg-5 d-flex flex-column">
+                                <!-- Quality Note Alert -->
+                                <div id="mb-quality-note" class="alert alert-info py-2 px-3 mb-3 d-none" role="alert">
+                                    <small class="d-flex align-items-center">
+                                        <i class="fas fa-info-circle me-2"></i>
+                                        <span id="mb-quality-text"></span>
+                                    </small>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <h4 class="text-dark fw-bold mb-0">Screening Analysis</h4>
+                                    <span class="badge bg-light text-secondary border">AI Confidence: High</span>
+                                </div>
+
+                                <div class="row g-3 mb-3">
+                                    <div class="col-6">
+                                        <div id="mb-result-card" class="feature-box h-100" style="color: #2563eb;">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <div class="feature-title text-dark">Result</div>
+                                                <i class="fas fa-clipboard-check opacity-50 fs-5"></i>
+                                            </div>
+                                            <div id="mb-screening-result" class="h4 fw-bold text-dark mb-0">--</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div id="mb-hygiene-card" class="feature-box h-100" style="color: #10b981;">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <div class="feature-title text-dark">Hygiene</div>
+                                                <i class="fas fa-star opacity-50 fs-5"></i>
+                                            </div>
+                                            <div id="mb-hygiene-score" class="h4 fw-bold text-dark mb-0">--</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- AI Advice Button -->
+                                <button id="btn-ai-advice-b" class="btn btn-ai-action w-100 mb-4 py-2 fw-semibold rounded-3 d-flex align-items-center justify-content-center gap-2">
+                                    <i class="fas fa-robot"></i>
+                                    <span>View AI Recommendation</span>
+                                </button>
+
+                                <div class="card border-0 bg-light rounded-4 flex-grow-1 mb-4">
+                                    <div class="card-body p-4 d-flex flex-column">
+                                        <h6 class="fw-bold text-dark mb-3 text-uppercase small letter-spacing-1">Detailed Findings</h6>
+                                        <div id="mb-findings-list" class="d-flex flex-column gap-2 flex-grow-1 overflow-auto" style="max-height: 250px;">
+                                            <!-- Items injected here -->
+                                            <div class="text-center text-muted py-4">
+                                                <i class="fas fa-microscope display-6 mb-3 opacity-25"></i>
+                                                <p class="small mb-0">Analysis results will appear here</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="mt-auto pt-2 d-flex gap-3">
+                                    <button id="btn-new-upload-b-bottom" class="btn btn-outline-primary flex-fill py-3 fw-bold rounded-3 shadow-sm transition-all">
+                                        <i class="fas fa-plus-circle me-2"></i> New Analysis
+                                    </button>
+                                    <button id="btn-report-b" class="btn btn-primary flex-fill py-3 fw-bold rounded-3 shadow-sm hover-shadow-md transition-all">
+                                        <i class="fas fa-file-medical-alt me-2"></i> Generate Report
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Cookie Policy</li>
+                    </ol>
+                </nav>
+                
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-header bg-white p-5 border-bottom border-light">
+                        <h1 class="display-5 fw-bold text-dark mb-2">Cookie Policy</h1>
+                        <p class="text-muted mb-0">Explaining how we use cookies and similar technologies.</p>
+                    </div>
+                    <div class="card-body p-5">
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">1. What Are Cookies?</h3>
+                            <p class="text-secondary">
+                                Cookies are small text files that are stored on your computer or mobile device when you visit a website. They allow the website to remember your actions and preferences (such as login, language, font size, and other display preferences) over a period of time.
+                            </p>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">2. How We Use Cookies</h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover border">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th scope="col" class="py-3">Type</th>
+                                            <th scope="col" class="py-3">Purpose</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold text-dark">Essential Cookies</td>
+                                            <td class="text-secondary">Necessary for the website to function properly. These include cookies that enable you to log into secure areas of our website.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold text-dark">Analytical Cookies</td>
+                                            <td class="text-secondary">Allow us to recognize and count the number of visitors and to see how visitors move around our website when they are using it.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold text-dark">Functionality Cookies</td>
+                                            <td class="text-secondary">Used to recognize you when you return to our website. This enables us to personalize our content for you.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <h3 class="fw-bold text-primary mb-3">3. Managing Cookies</h3>
+                            <p class="text-secondary">
+                                You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. If you do this, however, you may have to manually adjust some preferences every time you visit a site and some services and functionalities may not work.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

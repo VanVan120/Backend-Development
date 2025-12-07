@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- ==================== HERO SECTION (Department) ==================== -->
+    <div class="hero-section" style="padding: 6rem 0 4rem 0;">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10">
+                    <h5 class="ai-subtitle text-uppercase mb-3 fs-3">Our Experts</h5>
+                    <h1 class="display-3 fw-bold text-dark mb-4 page-title-interactive">Meet The Team</h1>
+                    <p class="lead text-muted mb-5 mx-auto" style="max-width: 700px;">
+                        The brilliant minds behind Oral AI, dedicated to revolutionizing dental diagnostics through collaboration and innovation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Development Team Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row g-5 justify-content-center">
+                
+                <!-- Backend Design -->
+                <div class="col-lg-5">
+                    <div class="text-center mb-4">
+                        <span class="badge bg-info-subtle text-info rounded-pill px-4 py-2 mb-3 fw-bold fs-6">SYSTEMS</span>
+                        <h2 class="display-6 fw-bold text-dark">Backend Design</h2>
+                    </div>
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative d-flex align-items-center justify-content-center bg-light" style="height: 350px;">
+                            <img src="/static/images/team/backend_1.jpg" class="img-fluid" style="max-height: 100%; max-width: 100%; width: auto;" alt="Backend Developer" onerror="this.src='https://ui-avatars.com/api/?name=Backend+Dev&background=random&size=300'">
+                        </div>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold text-dark mb-1">Ivan Char Cheng Jun</h4>
+                            <p class="text-info fw-medium mb-3">Backend Developer</p>
+                            <p class="text-muted small">Architecting robust APIs and managing high-performance model inference engines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frontend Design -->
+                <div class="col-lg-5">
+                    <div class="text-center mb-4">
+                        <span class="badge bg-success-subtle text-success rounded-pill px-4 py-2 mb-3 fw-bold fs-6">UI/UX</span>
+                        <h2 class="display-6 fw-bold text-dark">Frontend Design</h2>
+                    </div>
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative d-flex align-items-center justify-content-center bg-light" style="height: 350px;">
+                            <img src="/static/images/team/frontend_1.jpg" class="img-fluid" style="max-height: 100%; max-width: 100%; width: auto;" alt="Frontend Developer" onerror="this.src='https://ui-avatars.com/api/?name=Frontend+Dev&background=random&size=300'">
+                        </div>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold text-dark mb-1">Kazuki Ichikawa</h4>
+                            <p class="text-success fw-medium mb-3">Frontend Developer</p>
+                            <p class="text-muted small">Crafting intuitive and responsive user interfaces for seamless medical analysis.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Dataset Annotation & Preparation Section -->
+    <section class="bg-white position-relative" style="padding: 8rem 0;">
+        <!-- Subtle top border/divider -->
+        <div class="position-absolute top-0 start-50 translate-middle-x w-75 border-top" style="opacity: 0.1;"></div>
+
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <span class="badge bg-primary-subtle text-primary rounded-pill px-4 py-2 mb-4 fw-bold fs-6 shadow-sm">DATA TEAM</span>
+                    <h2 class="display-5 fw-bold text-dark mb-3">Dataset Annotation & Preparation</h2>
+                    <p class="text-muted lead">Ensuring the highest quality data for training our AI models.</p>
+                    <!-- Decorative underline -->
+                    <div class="mt-4 mx-auto" style="width: 60px; height: 4px; background: linear-gradient(90deg, var(--bs-primary), var(--bs-info)); border-radius: 2px;"></div>
+                </div>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Member 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative d-flex align-items-center justify-content-center bg-light" style="height: 300px;">
+                            <img src="/static/images/team/dataset_1.jpg" class="img-fluid" style="max-height: 100%; max-width: 100%; width: auto;" alt="Team Member" onerror="this.src='https://ui-avatars.com/api/?name=Member+1&background=random&size=300'">
+                        </div>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold text-dark mb-1">Abdullah Sayed Ahmed Sayed</h4>
+                            <p class="text-primary fw-medium mb-3">Dataset Specialist</p>
+                            <p class="text-muted small">Expert in medical image annotation and data preprocessing pipelines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative d-flex align-items-center justify-content-center bg-light" style="height: 300px;">
+                            <img src="/static/images/team/dataset_2.jpg" class="img-fluid" style="max-height: 100%; max-width: 100%; width: auto;" alt="Team Member" onerror="this.src='https://ui-avatars.com/api/?name=Member+2&background=random&size=300'">
+                        </div>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold text-dark mb-1">Youssif Mahmoud Gomaa Sayed</h4>
+                            <p class="text-primary fw-medium mb-3">Dataset Specialist</p>
+                            <p class="text-muted small">Specializes in data quality assurance and dataset balancing techniques.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm hover-card transition-all">
+                        <div class="card-img-top overflow-hidden position-relative d-flex align-items-center justify-content-center bg-light" style="height: 300px;">
+                            <img src="/static/images/team/dataset_3.jpg" class="img-fluid" style="max-height: 100%; max-width: 100%; width: auto;" alt="Team Member" onerror="this.src='https://ui-avatars.com/api/?name=Member+3&background=random&size=300'">
+                        </div>
+                        <div class="card-body p-4 text-center">
+                            <h4 class="fw-bold text-dark mb-1">Abdurrahman Bin Milhan</h4>
+                            <p class="text-primary fw-medium mb-3">Dataset Specialist</p>
+                            <p class="text-muted small">Focuses on pathological feature extraction and metadata management.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

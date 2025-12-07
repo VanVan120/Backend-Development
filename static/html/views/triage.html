@@ -1,0 +1,88 @@
+    <!-- ==================== TRIAGE VIEW (Analysis Tool) ==================== -->
+    <div id="triage-view" class="hidden-section">
+        <div class="triage-container">
+            <div class="text-center mb-5">
+                <h5 class="ai-subtitle text-uppercase mb-3 fs-3">AI-POWERED DIAGNOSTICS</h5>
+                <h1 class="triage-title display-4 fw-bold text-dark mb-3 page-title-interactive">Intelligent Oral Disease Analysis</h1>
+                <p class="triage-subtitle lead text-muted mx-auto" style="max-width: 700px;">
+                    Deploying state-of-the-art AI to classify clinical images and histopathology slides with precision. 
+                    Upload your sample to begin the automated triage process.
+                </p>
+            </div>
+            
+            <div class="triage-upload-area position-relative overflow-hidden group" onclick="document.getElementById('main-file-input').click()">
+                <!-- Decorative Background Elements -->
+                <div class="position-absolute top-0 start-0 w-100 h-100 opacity-0 group-hover-opacity-100 transition-all" 
+                     style="background: radial-gradient(circle at center, rgba(37, 99, 235, 0.03) 0%, transparent 70%); pointer-events: none;"></div>
+                
+                <div class="upload-content position-relative z-1">
+                    <div class="upload-icon-wrapper mb-4 mx-auto">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    </div>
+                    <h3 class="upload-text-main mb-2">Drop your image here, or click to browse</h3>
+                    <p class="upload-text-sub mb-4">Supports JPG, JPEG, PNG (Clinical or Histopathology)</p>
+                    
+                    <div class="d-inline-flex align-items-center gap-2 text-primary fw-semibold bg-primary-subtle px-4 py-2 rounded-pill">
+                        <i class="fas fa-shield-alt"></i> Secure & Private Upload
+                    </div>
+                </div>
+                <input type="file" id="main-file-input" class="d-none" accept="image/*">
+            </div>
+
+            <div id="triage-loading" class="hidden-section">
+                <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-3 text-primary fw-semibold fs-5">Analyzing Image Structure...</p>
+                <p class="text-muted small">Routing to appropriate specialist model</p>
+            </div>
+
+            <!-- Divider -->
+            <div class="my-5 position-relative">
+                <hr class="border-secondary opacity-25">
+                <span class="position-absolute top-50 start-50 translate-middle px-4 py-1 rounded-pill text-muted small text-uppercase letter-spacing-1 fw-bold" 
+                      style="background: rgba(255,255,255,0.8); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.5);">
+                    System Capabilities
+                </span>
+            </div>
+
+            <!-- Features Grid (New Design) -->
+            <div class="features-grid">
+                <!-- Card 1: Smart Triage -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Triage</h3>
+                    <p class="feature-desc">
+                        Automatically routes uploaded images to either the Histopathology or Clinical Screening model based on visual characteristics.
+                    </p>
+                    <span class="feature-tag">Auto-Routing</span>
+                </div>
+
+                <!-- Card 2: Histopathology -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="feature-title">Histopathology</h3>
+                    <p class="feature-desc">
+                        Deep learning analysis for tumour detection, grading, and invasion depth measurement on microscopic slides.
+                    </p>
+                    <span class="feature-tag">Deep Learning</span>
+                </div>
+
+                <!-- Card 3: Clinical Screening -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-teeth"></i>
+                    </div>
+                    <h3 class="feature-title">Clinical Screening</h3>
+                    <p class="feature-desc">
+                        Real-time object detection for oral hygiene assessment and identification of potential lesions or abnormalities.
+                    </p>
+                    <span class="feature-tag">Object Detection</span>
+                </div>
+            </div>
+        </div>
+    </div>
