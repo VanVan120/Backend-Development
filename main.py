@@ -301,94 +301,98 @@ async def chat_endpoint(request: ChatRequest):
         print(f"Chat Endpoint Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+import requests
+
 # --- Newsletter Subscription ---
 class SubscribeRequest(BaseModel):
     email: str
 
-def send_email_task(email: str, base_url: str, sender_email: str, sender_password: str, recipient_email: str):
+def send_email_task(email: str, base_url: str, sender_email: str, recipient_email: str, api_key: str):
     try:
-        # Connect to Gmail SMTP server
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(sender_email, sender_password)
+        url = "https://api.brevo.com/v3/smtp/email"
+        headers = {
+            "accept": "application/json",
+            "api-key": api_key,
+            "content-type": "application/json"
+        }
 
         # 1. Send Notification to Admin (You)
-        msg_admin = MIMEMultipart()
-        msg_admin['From'] = f"Oral AI Bot <{sender_email}>"
-        msg_admin['To'] = recipient_email
-        msg_admin['Reply-To'] = email
-        msg_admin['Subject'] = f"New Subscriber: {email}"
-
-        body_admin = f"""
-        New Newsletter Subscription
-        ---------------------------
-        
-        A new user has joined your newsletter!
-        
-        Subscriber Email: {email}
-        
-        (This email was sent automatically by your Oral AI Platform)
-        """
-        msg_admin.attach(MIMEText(body_admin, 'plain'))
-        server.sendmail(sender_email, recipient_email, msg_admin.as_string())
+        payload_admin = {
+            "sender": {"name": "Oral AI Bot", "email": sender_email},
+            "to": [{"email": recipient_email}],
+            "replyTo": {"email": email},
+            "subject": f"New Subscriber: {email}",
+            "textContent": f"""
+            New Newsletter Subscription
+            ---------------------------
+            
+            A new user has joined your newsletter!
+            
+            Subscriber Email: {email}
+            
+            (This email was sent automatically by your Oral AI Platform)
+            """
+        }
+        response_admin = requests.post(url, json=payload_admin, headers=headers)
+        if not response_admin.ok:
+            print(f"Failed to send admin email: {response_admin.text}")
 
         # 2. Send Confirmation to Subscriber (The User)
-        msg_user = MIMEMultipart()
-        msg_user['From'] = f"Oral AI Team <{sender_email}>"
-        msg_user['To'] = email
-        msg_user['Subject'] = "Welcome to Oral AI!"
+        payload_user = {
+            "sender": {"name": "Oral AI Team", "email": sender_email},
+            "to": [{"email": email}],
+            "subject": "Welcome to Oral AI!",
+            "htmlContent": f"""
+            <html>
+                <body>
+                    <h2>Welcome to Oral AI!</h2>
+                    <p>Hi there,</p>
+                    <p>Thank you for subscribing to the Oral AI newsletter!</p>
+                    <p>We are thrilled to have you with us. You will now receive the latest updates on AI medical breakthroughs and oral health technology.</p>
+                    <p><strong><a href="{base_url}/pages">Click here to visit our News Page</a></strong></p>
+                    <br>
+                    <p>Best regards,</p>
+                    <p>The Oral AI Team</p>
+                </body>
+            </html>
+            """
+        }
+        response_user = requests.post(url, json=payload_user, headers=headers)
+        if not response_user.ok:
+            print(f"Failed to send user email: {response_user.text}")
+        else:
+            print(f"Email sent successfully to {email}")
 
-        body_user = f"""
-        <html>
-            <body>
-                <h2>Welcome to Oral AI!</h2>
-                <p>Hi there,</p>
-                <p>Thank you for subscribing to the Oral AI newsletter!</p>
-                <p>We are thrilled to have you with us. You will now receive the latest updates on AI medical breakthroughs and oral health technology.</p>
-                <p><strong><a href="{base_url}/pages">Click here to visit our News Page</a></strong></p>
-                <br>
-                <p>Best regards,</p>
-                <p>The Oral AI Team</p>
-            </body>
-        </html>
-        """
-        msg_user.attach(MIMEText(body_user, 'html'))
-        server.sendmail(sender_email, email, msg_user.as_string())
-
-        # Close connection
-        server.quit()
-        print(f"Email sent successfully to {email}")
     except Exception as e:
         print(f"Background Email Error: {e}")
-        # Print more details for debugging
         import traceback
         traceback.print_exc()
 
 @app.post("/api/subscribe")
 async def subscribe_newsletter(request: SubscribeRequest, background_tasks: BackgroundTasks):
     sender_email = os.getenv("EMAIL_SENDER")
-    sender_password = os.getenv("EMAIL_PASSWORD")
     recipient_email = os.getenv("EMAIL_RECIPIENT")
+    api_key = os.getenv("BREVO_API_KEY")
     
     print(f"Debug: Attempting to subscribe {request.email}")
     print(f"Debug: Sender configured? {'Yes' if sender_email else 'No'}")
-    print(f"Debug: Password configured? {'Yes' if sender_password else 'No'}")
+    print(f"Debug: API Key configured? {'Yes' if api_key else 'No'}")
     
     # Get Base URL from env or default to the Hugging Face Space URL
     base_url = os.getenv("BASE_URL", "https://ivanjun-oral-ai-cancer-disease-detection.hf.space")
 
-    # Clean up credentials (remove potential spaces or newlines)
+    # Clean up credentials
     if sender_email: sender_email = sender_email.strip()
-    if sender_password: sender_password = sender_password.strip().replace(" ", "") # Remove spaces from app password
     if recipient_email: recipient_email = recipient_email.strip()
+    if api_key: api_key = api_key.strip()
 
-    if not sender_email or not sender_password or not recipient_email:
+    if not sender_email or not api_key or not recipient_email:
         # Fallback for demo purposes if not configured
         print(f"Simulation: Newsletter subscription for {request.email}")
         return {"message": "Subscribed successfully (Simulation Mode - Configure .env for real emails)"}
 
     # Add email task to background
-    background_tasks.add_task(send_email_task, request.email, base_url, sender_email, sender_password, recipient_email)
+    background_tasks.add_task(send_email_task, request.email, base_url, sender_email, recipient_email, api_key)
 
     return {"message": "Subscribed successfully"}
 
