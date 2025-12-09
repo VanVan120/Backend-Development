@@ -372,7 +372,7 @@ class App {
             const data = await APIService.analyzeImage(file);
 
             if (data.error) {
-                alert("Error: " + data.error);
+                this.showToast("Error: " + data.error, "error");
                 UIManager.resetApp();
                 return;
             }
@@ -392,20 +392,20 @@ class App {
                 }
                 this.modelBUI.show(data.final_analysis, file);
             } else {
-                alert("Unknown result type.");
+                this.showToast("Unknown result type.", "error");
                 UIManager.resetApp();
             }
 
         } catch (e) {
             console.error(e);
-            alert("Analysis failed. Please try again.");
+            this.showToast("Analysis failed. Please try again.", "error");
             UIManager.resetApp();
         }
     }
 
     async downloadReport(modelType) {
         if (!this.currentAnalysisData) {
-            alert("No analysis data available. Please upload an image first.");
+            this.showToast("No analysis data available. Please upload an image first.", "error");
             return;
         }
 
@@ -443,7 +443,7 @@ class App {
 
         } catch (error) {
             console.error("Report Error:", error);
-            alert("Failed to generate report. Please try again.");
+            this.showToast("Failed to generate report. Please try again.", "error");
         } finally {
             btn.innerHTML = originalText;
             btn.disabled = false;
@@ -452,7 +452,7 @@ class App {
 
     async handleEmailReport(modelType) {
         if (!this.currentAnalysisData) {
-            alert("No analysis data available. Please upload an image first.");
+            this.showToast("No analysis data available. Please upload an image first.", "error");
             return;
         }
 
@@ -525,11 +525,11 @@ class App {
             };
 
             await APIService.sendReportEmail(payload);
-            alert(`Report successfully sent to ${email}!`);
+            this.showToast(`Report successfully sent to ${email}!`, 'success');
 
         } catch (error) {
             console.error("Email Report Error:", error);
-            alert("Failed to send email. Please try again later.");
+            this.showToast("Failed to send email. Please try again later.", 'error');
         } finally {
             if (btn) {
                 btn.innerHTML = originalText;
