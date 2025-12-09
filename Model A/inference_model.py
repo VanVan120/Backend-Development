@@ -186,6 +186,18 @@ class ModelAInference:
                 
             # Process Outputs
             tvnt_prob = F.softmax(outputs['tvnt'], dim=1)[0]
+            
+            # --- NEW: Confidence Threshold Check ---
+            # If the model is not confident enough (e.g., < 60%), we flag it as uncertain/invalid
+            confidence_score = float(tvnt_prob[1].item()) if tvnt_prob[1].item() > tvnt_prob[0].item() else float(tvnt_prob[0].item())
+            
+            if confidence_score < 0.60:
+                 return {
+                    "status": "error",
+                    "message": "The uploaded image does not appear to be a valid histopathological sample. Confidence too low."
+                }
+            # ---------------------------------------
+
             is_tumour = tvnt_prob[1].item() > 0.5
             
             poi_probs = F.softmax(outputs['poi'], dim=1)[0]

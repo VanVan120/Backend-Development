@@ -95,6 +95,13 @@ class OralHygieneModel:
 
             # --- STEP 3: FINAL LOGIC (Shared) ---
             if len(detections) == 0:
+                 # If no detections, check if it might be an invalid image
+                 # For YOLO, if it detects NOTHING, it might be a clean mouth OR a random object.
+                 # We can't easily distinguish without a classifier, but we can return a neutral result.
+                 # However, if the user uploaded a "cat", and we found 0 teeth/gums, it's suspicious.
+                 # Ideally, we would have a "valid oral image" classifier (Triage Model handles this).
+                 # Since Triage already filters, we assume it's a valid oral image here.
+                 
                  return {
                     "screening_result": "No Issues Detected",
                     "findings": [],
