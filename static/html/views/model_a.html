@@ -2,176 +2,153 @@
     <!-- AI Suggestion Modal Model A -->
     <div class="modal fade" id="aiSuggestionModalA" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
-                <div class="modal-header ai-theme-gradient border-0 p-4">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="position-relative">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center bg-white/10 backdrop-blur-sm shadow-inner" 
-                                 style="width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1);">
-                                <i class="fas fa-robot fs-5 text-white"></i>
-                            </div>
-                            <div class="position-absolute bottom-0 end-0 border border-2 border-dark rounded-circle" 
-                                 style="width: 12px; height: 12px; background-color: #22c55e; box-shadow: 0 0 0 2px #0f172a;"></div>
-                        </div>
-                        <div>
-                            <h5 class="modal-title fw-bold mb-0 text-white">AI Assistant</h5>
-                            <div class="d-flex align-items-center gap-1">
-                                <span class="d-inline-block rounded-circle bg-success" style="width: 6px; height: 6px; box-shadow: 0 0 8px #22c55e;"></span>
-                                <small class="text-white-50">Histopathology Insight</small>
-                            </div>
-                        </div>
-                    </div>
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-0 bg-primary text-white rounded-top-4">
+                    <h5 class="modal-title"><i class="fas fa-robot me-2"></i>AI Analysis Insight</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-4" style="background-color: #f8fafc; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 24px 24px;">
-                    <div class="bg-white p-4 rounded-4 shadow-sm border border-light-subtle">
-                        <div class="d-flex gap-3">
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-quote-left text-primary opacity-25 display-6"></i>
-                            </div>
-                            <div>
-                                <p id="ai-suggestion-text-a" class="fs-5 text-dark mb-0" style="line-height: 1.6;">
-                                    Analysis in progress...
-                                </p>
-                            </div>
-                        </div>
+                <div class="modal-body p-4">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-quote-left text-primary opacity-25 fa-2x me-3"></i>
+                        <p id="ai-suggestion-text-a" class="fs-5 text-dark mb-0" style="line-height: 1.6;">
+                            Loading suggestion...
+                        </p>
                     </div>
                 </div>
-                <div class="modal-footer border-0 bg-light p-3 justify-content-center">
-                    <small class="text-muted"><i class="fas fa-info-circle me-1"></i> AI generated suggestion. Always consult a specialist.</small>
+                <div class="modal-footer border-0 bg-light rounded-bottom-4">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="model-a-view" class="hidden-section container">
-        <div class="text-center mb-5">
-            <h1 class="display-5 fw-bold page-title-interactive">Histopathology Analysis</h1>
-        </div>
-
+    <div id="model-a-view" class="container py-5 hidden-section animate-fade-in">
         <div class="row justify-content-center">
-            <div class="col-xl-10">
-                <div class="card">
-                    <div class="card-body p-5">
-                        <div class="row align-items-stretch">
-                            <!-- Left: Image & Heatmap -->
-                            <div class="col-lg-5 mb-4 mb-lg-0 d-flex flex-column">
-                                <div class="preview-image-container h-100 d-flex flex-column justify-content-center align-items-center p-4 bg-white">
-                                    <div class="position-relative w-100 mb-3">
-                                        <img id="ma-image-preview" src="" alt="Preview" class="preview-image img-fluid shadow-sm">
-                                        <div class="position-absolute top-0 end-0 m-2">
-                                            <span id="ma-tumour-badge" class="badge rounded-pill px-3 py-2 fs-6 shadow-sm">Unknown</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Heatmap Toggle -->
-                                    <div id="ma-heatmap-controls" class="btn-group w-100 shadow-sm mt-auto" role="group" style="display: none;">
-                                        <button type="button" class="btn btn-outline-primary active fw-semibold" id="ma-btn-original">
-                                            <i class="fas fa-image me-2"></i>Original
-                                        </button>
-                                        <button type="button" class="btn btn-outline-danger fw-semibold" id="ma-btn-heatmap">
-                                            <i class="fas fa-fire me-2"></i>Heatmap
-                                        </button>
+            <div class="col-lg-11">
+                <!-- Header -->
+                <div class="d-flex align-items-center mb-4">
+                    <button id="btn-back-model-a" class="btn btn-outline-secondary me-3 rounded-circle p-2" style="width: 45px; height: 45px;">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h2 class="fw-bold mb-0 text-primary">Histopathology Analysis</h2>
+                        <p class="text-muted mb-0">Deep Learning Model A (DenseNet169)</p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-lg overflow-hidden rounded-4">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <!-- Left Column: Image & Visuals -->
+                            <div class="col-lg-6 bg-light p-4 d-flex flex-column border-end">
+                                <div class="position-relative rounded-4 overflow-hidden shadow-sm mb-3" style="min-height: 400px; background: #000;">
+                                    <img id="ma-image-preview" src="" class="w-100 h-100 object-fit-contain position-absolute top-0 start-0" alt="Analysis Result">
+                                </div>
+                                
+                                <!-- Heatmap Controls -->
+                                <div id="ma-heatmap-controls" class="d-flex justify-content-center gap-2 mb-3" style="display: none !important;">
+                                    <button id="ma-btn-original" class="btn btn-sm btn-outline-dark active px-4 rounded-pill">Original</button>
+                                    <button id="ma-btn-heatmap" class="btn btn-sm btn-outline-danger px-4 rounded-pill">
+                                        <i class="fas fa-fire me-1"></i> Heatmap
+                                    </button>
+                                </div>
+
+                                <div class="mt-auto">
+                                    <div class="alert alert-info border-0 bg-blue-50 text-blue-800 rounded-3 mb-0">
+                                        <i class="fas fa-info-circle me-2"></i>
+                                        <small>Heatmaps highlight areas of high tumour probability.</small>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Right: Metrics -->
-                            <div class="col-lg-7">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h4 class="text-dark fw-bold mb-0">Diagnostic Metrics</h4>
-                                    <span class="badge bg-light text-secondary border">AI Confidence: High</span>
+                            <!-- Right Column: Detailed Results -->
+                            <div class="col-lg-6 p-4 p-lg-5 bg-white">
+                                <!-- Primary Diagnosis -->
+                                <div class="mb-5">
+                                    <h5 class="text-uppercase text-muted fw-bold fs-7 mb-3">Primary Diagnosis</h5>
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <span id="ma-tumour-badge" class="badge bg-secondary fs-5 px-3 py-2 rounded-pill">Analyzing...</span>
+                                        <div class="text-end">
+                                            <small class="text-muted d-block">Confidence</small>
+                                            <span id="ma-prob-value" class="fs-4 fw-bold text-dark">--%</span>
+                                        </div>
+                                    </div>
+                                    <div class="progress" style="height: 8px;">
+                                        <div id="ma-prob-bar" class="progress-bar bg-primary rounded-pill" role="progressbar" style="width: 0%"></div>
+                                    </div>
                                 </div>
 
-                                <!-- AI Advice Button -->
-                                <button id="btn-ai-advice-a" class="btn btn-ai-action w-100 mb-4 py-2 fw-semibold rounded-3 d-flex align-items-center justify-content-center gap-2">
-                                    <i class="fas fa-robot"></i>
-                                    <span>View AI Interpretation</span>
-                                </button>
-                                
-                                <div class="row g-3">
-                                    <!-- Tumour Probability -->
-                                    <div class="col-md-6">
-                                        <div id="ma-prob-card" class="feature-box h-100" style="color: #2563eb;">
-                                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                                <div class="feature-title text-dark">Tumour Probability</div>
-                                                <i class="fas fa-chart-pie opacity-50 fs-5"></i>
-                                            </div>
-                                            <div class="feature-value text-dark" id="ma-prob-value">-</div>
-                                            <div class="progress mt-2 rounded-pill" style="height: 8px; background-color: #eff6ff;">
-                                                <div id="ma-prob-bar" class="progress-bar bg-primary rounded-pill" role="progressbar" style="width: 0%"></div>
+                                <!-- Detailed Metrics Grid -->
+                                <div class="mb-5">
+                                    <h5 class="text-uppercase text-muted fw-bold fs-7 mb-3">Microscopic Features</h5>
+                                    <div class="row g-3">
+                                        <!-- DOI -->
+                                        <div class="col-6">
+                                            <div class="p-3 bg-light rounded-3 border h-100">
+                                                <small class="text-muted d-block mb-1">Depth of Invasion</small>
+                                                <div class="d-flex align-items-baseline">
+                                                    <span id="ma-doi-value" class="fs-5 fw-bold text-dark">--</span>
+                                                    <small class="text-muted ms-1">mm</small>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <!-- Depth of Invasion -->
-                                    <div class="col-md-6">
-                                        <div class="feature-box" style="color: #0d9488;">
-                                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                                <div class="feature-title text-dark">Depth of Invasion</div>
-                                                <i class="fas fa-ruler-vertical opacity-50 fs-5"></i>
+                                        <!-- POI -->
+                                        <div class="col-6">
+                                            <div class="p-3 bg-light rounded-3 border h-100">
+                                                <small class="text-muted d-block mb-1">Pattern of Invasion</small>
+                                                <span id="ma-poi-value" class="fs-5 fw-bold text-dark">--</span>
                                             </div>
-                                            <div class="feature-value text-dark"><span id="ma-doi-value">-</span> <small class="text-muted fs-6">mm</small></div>
                                         </div>
-                                    </div>
-
-                                    <!-- Pattern of Invasion -->
-                                    <div class="col-md-6">
-                                        <div class="feature-box" style="color: #d97706;">
-                                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                                <div class="feature-title text-dark">Pattern of Invasion</div>
-                                                <i class="fas fa-project-diagram opacity-50 fs-5"></i>
+                                        <!-- PNI -->
+                                        <div class="col-6">
+                                            <div class="p-3 bg-light rounded-3 border h-100">
+                                                <small class="text-muted d-block mb-1">Perineural Invasion</small>
+                                                <span id="ma-pni-value" class="fs-6 fw-bold text-dark">--</span>
                                             </div>
-                                            <div class="feature-value text-dark">Type <span id="ma-poi-value">-</span></div>
                                         </div>
-                                    </div>
-
-                                    <!-- Perineural Invasion -->
-                                    <div class="col-md-6">
-                                        <div class="feature-box" style="color: #dc2626;">
-                                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                                <div class="feature-title text-dark">Perineural Invasion</div>
-                                                <i class="fas fa-biohazard opacity-50 fs-5"></i>
+                                        <!-- Mitotic Index -->
+                                        <div class="col-6">
+                                            <div class="p-3 bg-light rounded-3 border h-100">
+                                                <small class="text-muted d-block mb-1">Mitotic Index</small>
+                                                <span id="ma-mi-value" class="fs-5 fw-bold text-dark">--</span>
                                             </div>
-                                            <div class="feature-value text-dark" id="ma-pni-value">-</div>
                                         </div>
-                                    </div>
-
-                                    <!-- Tumour Buds -->
-                                    <div class="col-md-6">
-                                        <div class="feature-box" style="color: #7c3aed;">
-                                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                                <div class="feature-title text-dark">Tumour Buds</div>
-                                                <i class="fas fa-bacteria opacity-50 fs-5"></i>
+                                        <!-- Tumour Buds -->
+                                        <div class="col-12">
+                                            <div class="p-3 bg-light rounded-3 border d-flex justify-content-between align-items-center">
+                                                <small class="text-muted">Tumour Buds Count</small>
+                                                <span id="ma-tb-value" class="fs-5 fw-bold text-dark">--</span>
                                             </div>
-                                            <div class="feature-value text-dark" id="ma-tb-value">-</div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Mitotic Figures -->
-                                    <div class="col-md-6">
-                                        <div class="feature-box" style="color: #ea580c;">
-                                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                                <div class="feature-title text-dark">Mitotic Figures</div>
-                                                <i class="fas fa-dna opacity-50 fs-5"></i>
-                                            </div>
-                                            <div class="feature-value text-dark" id="ma-mi-value">-</div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
+                                <!-- AI Recommendation -->
+                                <div class="d-grid gap-2 mb-4">
+                                    <button id="btn-ai-advice-a" class="btn btn-dark py-3 rounded-3 shadow-sm transition-all">
+                                        <i class="fas fa-robot me-2"></i> View AI Recommendation
+                                    </button>
+                                </div>
+
                                 <!-- Action Buttons -->
-                                <div class="mt-4 pt-2 d-flex gap-3">
-                                    <button id="btn-new-upload-a-bottom" class="btn btn-outline-primary flex-fill py-3 fw-bold rounded-3 shadow-sm transition-all">
-                                        <i class="fas fa-plus-circle me-2"></i> New Analysis
-                                    </button>
-                                    <button id="btn-report-a" class="btn btn-primary flex-fill py-3 fw-bold rounded-3 shadow-sm hover-shadow-md transition-all">
-                                        <i class="fas fa-file-medical-alt me-2"></i> Generate Report
-                                    </button>
-                                    <button id="btn-email-a" class="btn btn-success flex-fill py-3 fw-bold rounded-3 shadow-sm hover-shadow-md transition-all">
-                                        <i class="fas fa-envelope me-2"></i> Email Report
-                                    </button>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <button id="btn-report-a" class="btn btn-outline-primary w-100 py-2 fw-bold rounded-3">
+                                            <i class="fas fa-file-pdf me-2"></i> PDF Report
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="btn-email-a" class="btn btn-primary w-100 py-2 fw-bold rounded-3 shadow-sm">
+                                            <i class="fas fa-envelope me-2"></i> Email Report
+                                        </button>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button id="btn-new-upload-a-bottom" class="btn btn-light w-100 py-2 text-muted rounded-3">
+                                            Start New Analysis
+                                        </button>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

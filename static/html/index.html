@@ -5,4 +5,30 @@
     {% include "views/triage.html" %}
     {% include "views/model_a.html" %}
     {% include "views/model_b.html" %}
+
+    <!-- Email Report Modal -->
+    <div class="modal fade" id="emailReportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-0 bg-primary text-white rounded-top-4">
+                    <h5 class="modal-title"><i class="fas fa-envelope me-2"></i>Email Report</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted mb-3">Enter your email address to receive the detailed analysis report.</p>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-3" id="reportEmailInput" placeholder="name@example.com">
+                        <label for="reportEmailInput">Email address</label>
+                    </div>
+                    <div id="emailError" class="text-danger small d-none"><i class="fas fa-exclamation-circle me-1"></i> Please enter a valid email.</div>
+                </div>
+                <div class="modal-footer border-0 bg-light rounded-bottom-4">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="btn-send-email-confirm" class="btn btn-primary rounded-pill px-4">
+                        <i class="fas fa-paper-plane me-2"></i>Send Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

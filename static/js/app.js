@@ -318,15 +318,26 @@ class App {
         const btnReportA = document.getElementById('btn-report-a');
         if (btnReportA) btnReportA.addEventListener('click', () => this.downloadReport('A'));
 
-        const btnEmailA = document.getElementById('btn-email-a');
-        if (btnEmailA) btnEmailA.addEventListener('click', () => this.handleEmailReport('A'));
+        // Use event delegation for Email buttons to ensure they work even if DOM updates
+        document.addEventListener('click', (e) => {
+            const btnA = e.target.closest('#btn-email-a');
+            if (btnA) {
+                e.preventDefault();
+                console.log('Email Button A Clicked');
+                this.handleEmailReport('A');
+            }
+
+            const btnB = e.target.closest('#btn-email-b');
+            if (btnB) {
+                e.preventDefault();
+                console.log('Email Button B Clicked');
+                this.handleEmailReport('B');
+            }
+        });
 
         // Model B Controls
         const btnReportB = document.getElementById('btn-report-b');
         if (btnReportB) btnReportB.addEventListener('click', () => this.downloadReport('B'));
-
-        const btnEmailB = document.getElementById('btn-email-b');
-        if (btnEmailB) btnEmailB.addEventListener('click', () => this.handleEmailReport('B'));
 
         // Model B Back Button
         const btnBackB = document.getElementById('btn-back-model-b');
@@ -440,20 +451,63 @@ class App {
     }
 
     async handleEmailReport(modelType) {
-        const btnId = modelType === 'A' ? 'btn-email-a' : 'btn-email-b';
-        const btn = document.getElementById(btnId);
-        const originalText = btn.innerHTML;
-
-        const email = prompt("Please enter your email address to receive the report:");
-        if (!email || !email.includes('@')) {
-            if (email) alert("Please enter a valid email address.");
+        if (!this.currentAnalysisData) {
+            alert("No analysis data available. Please upload an image first.");
             return;
         }
 
-        try {
+        const modalEl = document.getElementById('emailReportModal');
+        const emailInput = document.getElementById('reportEmailInput');
+        const sendBtn = document.getElementById('btn-send-email-confirm');
+        const errorMsg = document.getElementById('emailError');
+        
+        if (!modalEl || !emailInput || !sendBtn) {
+            console.error("Email modal elements not found");
+            // Fallback to prompt if modal fails
+            const email = prompt("Please enter your email address:");
+            if (email) this.sendEmail(modelType, email);
+            return;
+        }
+
+        // Reset modal state
+        emailInput.value = '';
+        emailInput.classList.remove('is-invalid');
+        errorMsg.classList.add('d-none');
+        
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
+
+        // Handle Send Click
+        const handleSend = async () => {
+            const email = emailInput.value.trim();
+            if (!email || !email.includes('@')) {
+                emailInput.classList.add('is-invalid');
+                errorMsg.classList.remove('d-none');
+                return;
+            }
+
+            modal.hide();
+            await this.sendEmail(modelType, email);
+        };
+
+        // Remove existing listeners to avoid duplicates
+        const newBtn = sendBtn.cloneNode(true);
+        sendBtn.parentNode.replaceChild(newBtn, sendBtn);
+        newBtn.addEventListener('click', handleSend);
+    }
+
+    async sendEmail(modelType, email) {
+        const btnId = modelType === 'A' ? 'btn-email-a' : 'btn-email-b';
+        const btn = document.getElementById(btnId);
+        let originalText = '';
+        
+        if (btn) {
+            originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Sending...';
             btn.disabled = true;
+        }
 
+        try {
             const reportType = modelType === 'A' ? 'expert' : 'public';
             
             let imageSrc;
@@ -477,8 +531,10 @@ class App {
             console.error("Email Report Error:", error);
             alert("Failed to send email. Please try again later.");
         } finally {
-            btn.innerHTML = originalText;
-            btn.disabled = false;
+            if (btn) {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
         }
     }
 
