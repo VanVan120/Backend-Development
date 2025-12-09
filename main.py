@@ -232,7 +232,7 @@ async def analyze_image(file: UploadFile = File(...)):
         
         else:
             print(f"Error: Unknown image type detected: {detected_type}")
-            response_data["error"] = "Unknown image type detected."
+            response_data["error"] = "The uploaded image does not appear to be a valid oral health image (Clinical or Histopathological). Please upload a relevant image."
 
         print("Analysis Finished. Sending response.")
         return JSONResponse(content=response_data)

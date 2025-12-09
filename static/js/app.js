@@ -372,7 +372,7 @@ class App {
             const data = await APIService.analyzeImage(file);
 
             if (data.error) {
-                this.showToast("Error: " + data.error, "error");
+                this.showToast(data.error, "error");
                 UIManager.resetApp();
                 return;
             }

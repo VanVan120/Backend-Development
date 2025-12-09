@@ -47,6 +47,11 @@ def predict():
             # Clean up uploaded file
             os.remove(filepath)
             
+            if result == "Unknown":
+                return jsonify({
+                    'error': 'Image content not recognized. Please upload a valid Clinical or Histopathological oral image.'
+                }), 400
+
             return jsonify({
                 'class': result,
                 'message': 'Classification successful'

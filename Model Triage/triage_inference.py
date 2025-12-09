@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from torchvision import models, transforms
 from PIL import Image
 import os
@@ -48,13 +49,14 @@ class TriageRouter:
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ])
 
-    def predict(self, image_path):
+    def predict(self, image_path, threshold=0.60):
         """
         Predicts the class of a single image.
         Args:
             image_path (str): Path to the image file.
+            threshold (float): Minimum confidence score required for a valid prediction.
         Returns:
-            str: Predicted class label ('Clinical' or 'Histopathological').
+            str: Predicted class label ('Clinical' or 'Histopathological') or 'Unknown'.
         """
         if not os.path.exists(image_path):
             return "Error: Image file not found."
@@ -70,7 +72,11 @@ class TriageRouter:
             # Inference
             with torch.no_grad():
                 outputs = self.model(image_tensor)
-                _, predicted_idx = torch.max(outputs, 1)
+                probabilities = F.softmax(outputs, dim=1)
+                confidence, predicted_idx = torch.max(probabilities, 1)
+            
+            if confidence.item() < threshold:
+                return "Unknown"
                 
             predicted_label = self.classes[predicted_idx.item()]
             return predicted_label
