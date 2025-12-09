@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from torchvision import models, transforms
 from PIL import Image
 import os
+import numpy as np
 
 class TriageRouter:
     """
@@ -49,7 +50,7 @@ class TriageRouter:
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ])
 
-    def predict(self, image_path, threshold=0.60):
+    def predict(self, image_path, threshold=0.80):
         """
         Predicts the class of a single image.
         Args:
@@ -65,6 +66,26 @@ class TriageRouter:
             # Open image and convert to RGB (handles greyscale or alpha channels)
             image = Image.open(image_path).convert('RGB')
             
+            # --- Pre-Inference Quality Checks ---
+            # Convert to numpy for statistical analysis
+            img_np = np.array(image)
+            
+            # 1. Brightness Check
+            # Histopathology and Clinical images are generally well-lit.
+            # Dark screenshots (like code editors) or black images should be rejected.
+            mean_brightness = np.mean(img_np)
+            if mean_brightness < 40: # Reject if too dark (0-255 scale)
+                return "Unknown"
+            if mean_brightness > 250: # Reject if purely white/washed out
+                return "Unknown"
+                
+            # 2. Variance/Information Check
+            # Solid colors or very low detail images have low standard deviation.
+            std_dev = np.std(img_np)
+            if std_dev < 15: # Reject low information images
+                return "Unknown"
+            # ------------------------------------
+            
             # Preprocess
             image_tensor = self.transform(image).unsqueeze(0) # Add batch dimension
             image_tensor = image_tensor.to(self.device)
@@ -75,6 +96,7 @@ class TriageRouter:
                 probabilities = F.softmax(outputs, dim=1)
                 confidence, predicted_idx = torch.max(probabilities, 1)
             
+            # Stricter threshold for Triage to prevent misrouting
             if confidence.item() < threshold:
                 return "Unknown"
                 
