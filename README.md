@@ -175,9 +175,31 @@ The chatbot doesn't just "guess"; it uses **Retrieval-Augmented Generation (RAG)
 | :--- | :--- |
 | **⚡ Real-time Inference** | Optimized PyTorch inference allows for analysis in under 3 seconds per image. |
 | **🤖 Medical Chatbot** | Integrated RAG-based Chatbot (powered by Gemini) that knows your specific analysis results and answers follow-up questions contextually. |
-| **📄 PDF Auto-Report** | Automatically generates a downloadable medical PDF report with heatmaps and bounding boxes. |
+| **📄 Smart Reporting Suite** | Generates professional PDF reports including **visual evidence**. Emails now deliver both the report and high-res **annotated images** directly to the user. |
+| **🖥️ Interactive Viewport** | New "Dark Mode" analysis interface with **Glassmorphism controls**, fullscreen inspection, and dynamic overlay toggles. |
 | **🔒 Privacy First** | HIPAA-compliant design: Images are processed in RAM and wiped immediately after analysis. |
 | **☁️ Cloud Native** | Fully containerized with Docker, ready for serverless deployment. |
+
+---
+
+## 🚀 Latest Enhancements (v2.0)
+
+We have recently upgraded the platform with professional-grade UI and reporting capabilities:
+
+### 1. High-Fidelity Visual Reporting
+The system now ensures that what you see is what you get.
+*   **Canvas-to-Image Rendering**: We implemented a client-side engine that renders bounding boxes and confidence labels directly onto a high-resolution canvas.
+*   **Annotated Exports**: When a user requests a report, this canvas is converted to a high-quality JPEG and embedded into the PDF and attached to the email. This ensures the doctor/patient sees the exact same detections in the file as they did on the screen.
+
+### 2. Professional Analysis Viewport
+The frontend has been redesigned to mimic professional medical imaging software:
+*   **Dark Mode Viewport**: Reduces eye strain and improves contrast for identifying lesions.
+*   **Glassmorphism Controls**: Floating, semi-transparent controls for toggling heatmaps/detections without obstructing the image.
+*   **Fullscreen Inspection**: Users can now expand the analysis view to examine fine details.
+
+### 3. Robust Backend Compatibility
+*   **Format Agnostic**: Added intelligent image conversion to handle WebP, PNG, and JPEG uploads seamlessly for PDF generation.
+*   **Cross-Platform Support**: Fixed file permission and pathing issues to ensure smooth operation on both Windows (Localhost) and Linux (Docker/Cloud) environments.
 
 ---
 

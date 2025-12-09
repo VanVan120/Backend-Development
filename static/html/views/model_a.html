@@ -32,7 +32,6 @@
                     </button>
                     <div>
                         <h2 class="fw-bold mb-0 text-primary">Histopathology Analysis</h2>
-                        <p class="text-muted mb-0">Deep Learning Model A (DenseNet169)</p>
                     </div>
                 </div>
 
@@ -41,22 +40,32 @@
                         <div class="row g-0">
                             <!-- Left Column: Image & Visuals -->
                             <div class="col-lg-6 bg-light p-4 d-flex flex-column border-end">
-                                <div class="position-relative rounded-4 overflow-hidden shadow-sm mb-3" style="min-height: 400px; background: #000;">
+                                <!-- Analysis Viewport -->
+                                <div class="analysis-viewport w-100 h-100 mb-3 position-relative" style="min-height: 450px;">
+                                    <!-- Main Image -->
                                     <img id="ma-image-preview" src="" class="w-100 h-100 object-fit-contain position-absolute top-0 start-0" alt="Analysis Result">
-                                </div>
-                                
-                                <!-- Heatmap Controls -->
-                                <div id="ma-heatmap-controls" class="d-flex justify-content-center gap-2 mb-3" style="display: none !important;">
-                                    <button id="ma-btn-original" class="btn btn-sm btn-outline-dark active px-4 rounded-pill">Original</button>
-                                    <button id="ma-btn-heatmap" class="btn btn-sm btn-outline-danger px-4 rounded-pill">
-                                        <i class="fas fa-fire me-1"></i> Heatmap
+                                    
+                                    <!-- Fullscreen Toggle -->
+                                    <button class="btn-fullscreen" onclick="toggleFullscreen(this.parentElement)" title="Toggle Fullscreen">
+                                        <i class="fas fa-expand"></i>
                                     </button>
+
+                                    <!-- Floating Controls -->
+                                    <div id="ma-heatmap-controls" class="viewport-controls" style="display: none !important;">
+                                        <button id="ma-btn-original" class="control-btn active">
+                                            <i class="fas fa-image"></i> Original
+                                        </button>
+                                        <button id="ma-btn-heatmap" class="control-btn">
+                                            <i class="fas fa-fire-alt text-danger"></i> Heatmap
+                                        </button>
+                                    </div>
                                 </div>
 
+                                <!-- Info Note -->
                                 <div class="mt-auto">
-                                    <div class="alert alert-info border-0 bg-blue-50 text-blue-800 rounded-3 mb-0">
-                                        <i class="fas fa-info-circle me-2"></i>
-                                        <small>Heatmaps highlight areas of high tumour probability.</small>
+                                    <div class="d-flex align-items-start p-3 rounded-3 bg-primary-subtle text-primary border border-primary-subtle">
+                                        <i class="fas fa-info-circle mt-1 me-2"></i>
+                                        <small style="line-height: 1.5;">Heatmaps visualize high-probability tumour regions. Toggle between views to compare.</small>
                                     </div>
                                 </div>
                             </div>
@@ -130,27 +139,30 @@
                                     </button>
                                 </div>
 
-                                <!-- Action Buttons -->
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <button id="btn-report-a" class="btn btn-outline-primary w-100 py-2 fw-bold rounded-3">
-                                            <i class="fas fa-file-pdf me-2"></i> PDF Report
-                                        </button>
-                                    </div>
-                                    <div class="col-6">
-                                        <button id="btn-email-a" class="btn btn-primary w-100 py-2 fw-bold rounded-3 shadow-sm">
-                                            <i class="fas fa-envelope me-2"></i> Email Report
-                                        </button>
-                                    </div>
-                                    <div class="col-12 mt-2">
-                                        <button id="btn-new-upload-a-bottom" class="btn btn-light w-100 py-2 text-muted rounded-3">
-                                            Start New Analysis
-                                        </button>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons Container -->
+                <div class="row mt-4 g-3">
+                    <div class="col-md-4">
+                        <button id="btn-report-a" class="btn btn-white bg-white border shadow-sm w-100 py-3 rounded-4 d-flex align-items-center justify-content-center transition-all hover-card">
+                            <i class="fas fa-file-pdf text-danger me-2 fa-lg"></i>
+                            <span class="fw-bold text-dark">PDF Report</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button id="btn-email-a" class="btn btn-white bg-white border shadow-sm w-100 py-3 rounded-4 d-flex align-items-center justify-content-center transition-all hover-card">
+                            <i class="fas fa-envelope text-primary me-2 fa-lg"></i>
+                            <span class="fw-bold text-dark">Email Report</span>
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button id="btn-new-upload-a-bottom" class="btn btn-primary shadow w-100 py-3 rounded-4 d-flex align-items-center justify-content-center transition-all hover-card">
+                            <i class="fas fa-redo me-2"></i>
+                            <span class="fw-bold">Start New Analysis</span>
+                        </button>
                     </div>
                 </div>
             </div>

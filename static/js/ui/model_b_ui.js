@@ -43,20 +43,21 @@ export class ModelBUI {
 
     fillData(data) {
         this.currentSuggestion = data.ai_suggestion;
+        this.lastDetections = data.detections; // Store for report generation
 
         // Show Quality Note if present
         const qualityAlert = document.getElementById('mb-quality-note');
         const qualityText = document.getElementById('mb-quality-text');
         if (data.quality_note && qualityAlert && qualityText) {
             qualityText.textContent = data.quality_note;
-            qualityAlert.classList.remove('d-none');
             
             // Style based on content
             if (data.quality_note.includes("Low Resolution")) {
-                qualityAlert.className = 'alert alert-warning py-2 px-3 mb-3';
+                qualityAlert.className = 'viewport-badge warning';
             } else {
-                qualityAlert.className = 'alert alert-info py-2 px-3 mb-3';
+                qualityAlert.className = 'viewport-badge';
             }
+            qualityAlert.classList.remove('d-none');
         } else if (qualityAlert) {
             qualityAlert.classList.add('d-none');
         }
@@ -127,6 +128,52 @@ export class ModelBUI {
     }
     
     getImageSrc() {
-        return document.getElementById('mb-preview-image').src;
+        const img = document.getElementById('mb-preview-image');
+        if (!this.lastDetections || !img) {
+             return img ? img.src : null;
+        }
+
+        // Create a temporary canvas to draw the full-resolution annotated image
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+
+        // 1. Draw original image
+        ctx.drawImage(img, 0, 0);
+
+        // 2. Draw boxes (using natural coordinates)
+        this.lastDetections.forEach(det => {
+            const [x1, y1, x2, y2] = det.bbox;
+            const w = x2 - x1;
+            const h = y2 - y1;
+
+            // Scale styles relative to image size
+            const scaleFactor = Math.max(1, img.naturalWidth / 1000);
+            
+            ctx.strokeStyle = '#EF4444';
+            ctx.lineWidth = 4 * scaleFactor;
+            ctx.strokeRect(x1, y1, w, h);
+
+            // Draw Label Background
+            ctx.fillStyle = '#EF4444';
+            const text = `${det.class} ${Math.round(det.confidence * 100)}%`;
+            
+            const fontSize = Math.round(20 * scaleFactor);
+            ctx.font = `bold ${fontSize}px Inter, sans-serif`;
+            
+            const textMetrics = ctx.measureText(text);
+            const textWidth = textMetrics.width;
+            const padding = 10 * scaleFactor;
+            const boxHeight = fontSize + padding;
+            
+            ctx.fillRect(x1, y1 - boxHeight, textWidth + padding * 2, boxHeight);
+
+            // Draw Label Text
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillText(text, x1 + padding, y1 - (padding / 2) - (fontSize * 0.1)); // Adjust baseline
+        });
+
+        return canvas.toDataURL('image/jpeg', 0.9);
     }
 }

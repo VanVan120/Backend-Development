@@ -80,7 +80,8 @@ class ModelAInference:
         self.model = OSCCMultiTaskModel()
         if os.path.exists(model_path):
             # strict=False allows loading weights even if we added new heads (like pni_seg)
-            self.model.load_state_dict(torch.load(model_path, map_location=self.device), strict=False)
+            # weights_only=False is required for PyTorch 2.6+ when loading full models or older checkpoints
+            self.model.load_state_dict(torch.load(model_path, map_location=self.device, weights_only=False), strict=False)
         else:
             print(f"WARNING: Model file {model_path} not found. Using random weights.")
             

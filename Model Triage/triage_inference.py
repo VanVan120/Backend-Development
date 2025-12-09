@@ -29,7 +29,7 @@ class TriageRouter:
         # Load Trained Weights
         if os.path.exists(model_path):
             try:
-                state_dict = torch.load(model_path, map_location=self.device)
+                state_dict = torch.load(model_path, map_location=self.device, weights_only=False)
                 self.model.load_state_dict(state_dict)
                 print(f"Successfully loaded model weights from '{model_path}'")
             except Exception as e:

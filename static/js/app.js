@@ -596,4 +596,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const app = new App();
     app.initSecurity();
     window.resetApp = () => UIManager.resetApp();
+    
+    // Global Fullscreen Toggle
+    window.toggleFullscreen = function(element) {
+        if (!document.fullscreenElement) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.webkitRequestFullscreen) { /* Safari */
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { /* IE11 */
+                element.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        }
+    };
 });

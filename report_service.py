@@ -1,5 +1,6 @@
 import io
 import os
+import uuid
 import tempfile
 from datetime import datetime
 from fpdf import FPDF
@@ -117,14 +118,20 @@ def generate_expert_report(data: dict, image_bytes: bytes = None) -> bytes:
         pdf.section_header("Visual Analysis")
         pdf.ln(2)
         
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp_file:
-            tmp_file.write(image_bytes)
-            tmp_path = tmp_file.name
-            
+        # Use a local temp file to avoid Windows permission/path issues with AppData
+        temp_dir = os.path.join(os.getcwd(), "temp_reports")
+        os.makedirs(temp_dir, exist_ok=True)
+        tmp_path = os.path.join(temp_dir, f"expert_{uuid.uuid4()}.jpg")
+        
         try:
-            # Calculate aspect ratio to fit nicely
-            with Image.open(tmp_path) as img:
-                w, h = img.size
+            # Convert image to JPEG using Pillow to ensure FPDF compatibility
+            # This handles WebP, PNG, etc.
+            with Image.open(io.BytesIO(image_bytes)) as img:
+                # Convert to RGB (remove alpha channel if present)
+                rgb_img = img.convert('RGB')
+                rgb_img.save(tmp_path, format='JPEG')
+                
+                w, h = rgb_img.size
                 aspect = h / w
             
             target_w = 120  # Reduced width
@@ -143,7 +150,10 @@ def generate_expert_report(data: dict, image_bytes: bytes = None) -> bytes:
             pdf.cell(0, 10, f"Error loading image: {str(e)}", 1, 1)
         finally:
             if os.path.exists(tmp_path):
-                os.unlink(tmp_path)
+                try:
+                    os.remove(tmp_path)
+                except:
+                    pass
     else:
         pdf.section_header("Visual Analysis")
         pdf.cell(0, 10, "No image data provided.", 1, 1)
@@ -214,14 +224,20 @@ def generate_public_report(data: dict, image_bytes: bytes = None) -> bytes:
         pdf.section_header("Visual Screening")
         pdf.ln(2)
         
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp_file:
-            tmp_file.write(image_bytes)
-            tmp_path = tmp_file.name
+        # Use a local temp file to avoid Windows permission/path issues with AppData
+        temp_dir = os.path.join(os.getcwd(), "temp_reports")
+        os.makedirs(temp_dir, exist_ok=True)
+        tmp_path = os.path.join(temp_dir, f"public_{uuid.uuid4()}.jpg")
         
         try:
-            # Calculate aspect ratio to fit nicely
-            with Image.open(tmp_path) as img:
-                w, h = img.size
+            # Convert image to JPEG using Pillow to ensure FPDF compatibility
+            # This handles WebP, PNG, etc.
+            with Image.open(io.BytesIO(image_bytes)) as img:
+                # Convert to RGB (remove alpha channel if present)
+                rgb_img = img.convert('RGB')
+                rgb_img.save(tmp_path, format='JPEG')
+                
+                w, h = rgb_img.size
                 aspect = h / w
             
             target_w = 120  # Reduced width
@@ -240,7 +256,10 @@ def generate_public_report(data: dict, image_bytes: bytes = None) -> bytes:
             pdf.cell(0, 10, f"Error loading image: {str(e)}", 1, 1)
         finally:
             if os.path.exists(tmp_path):
-                os.unlink(tmp_path)
+                try:
+                    os.remove(tmp_path)
+                except:
+                    pass
 
     # 5. Recommendations
     pdf.ln(10)
