@@ -50,7 +50,7 @@ class TriageRouter:
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ])
 
-    def predict(self, image_path, threshold=0.80):
+    def predict(self, image_path, threshold=0.95):
         """
         Predicts the class of a single image.
         Args:
