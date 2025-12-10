@@ -116,79 +116,73 @@
     </section>
 
     <!-- Technology Stack Section -->
-    <section class="py-5 bg-white">
-        <div class="container py-5">
+    <section class="py-5 bg-white position-relative overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="position-absolute top-0 end-0 w-50 h-100 bg-light rounded-start-pill" style="opacity: 0.5; z-index: 0;"></div>
+
+        <div class="container py-5 position-relative" style="z-index: 1;">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center">
                     <h6 class="text-primary fw-bold text-uppercase mb-2">Our Technology</h6>
                     <h2 class="display-5 fw-bold text-dark mb-3">Powered by Innovation</h2>
-                    <p class="lead text-muted mb-4">Explore the cutting-edge tools that power our AI models.</p>
-                    
-                    <!-- Level Toggle -->
-                    <div class="d-inline-flex bg-light rounded-pill p-1 border">
-                        <button class="btn btn-sm rounded-pill px-4 py-2 fw-bold active" id="btn-beginner" onclick="setTechLevel('beginner')">Beginner</button>
-                        <button class="btn btn-sm rounded-pill px-4 py-2 fw-bold text-muted" id="btn-advanced" onclick="setTechLevel('advanced')">Advanced</button>
-                    </div>
+                    <p class="lead text-muted mb-4">Click on the cards below to explore the cutting-edge tools behind our AI.</p>
                 </div>
             </div>
 
-            <div class="row g-4">
-                <!-- PyTorch -->
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
-                        <div class="card-header bg-danger text-white p-4 border-0">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-fire fa-2x me-3"></i>
-                                <h4 class="mb-0 fw-bold">PyTorch</h4>
+            <div class="row g-4 justify-content-center">
+                <!-- PyTorch Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden tech-card" 
+                         onclick="openTechModal('pytorch')"
+                         style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="card-body p-5 text-center d-flex flex-column align-items-center justify-content-center">
+                            <div class="icon-wrapper mb-4 p-4 rounded-circle bg-danger-subtle text-danger position-relative">
+                                <i class="fas fa-fire fa-3x"></i>
+                                <div class="pulse-ring bg-danger"></div>
                             </div>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="tech-content beginner-content">
-                                <p class="text-muted mb-0">PyTorch, developed by Facebook, is another deep learning framework widely used for building neural networks. Its straightforward, Pythonic nature makes it easy for beginners to grasp the basics of model creation and training. Beginners will appreciate PyTorch’s flexibility in creating simple models for image classification without having to worry about too much technical overhead.</p>
-                            </div>
-                            <div class="tech-content advanced-content d-none">
-                                <p class="text-muted mb-0">Advanced users can use PyTorch’s dynamic computation graph, allowing greater flexibility when building complex architectures, custom loss functions, and optimizers. It’s a great choice for researchers, as PyTorch offers seamless experimentation with cutting-edge models like Vision Language Models, Generative Adversarial Networks (GANs) and deep reinforcement learning. Thanks to its efficient memory management and GPU support, it also excels in handling large datasets.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CUDA -->
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
-                        <div class="card-header bg-success text-white p-4 border-0">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-microchip fa-2x me-3"></i>
-                                <h4 class="mb-0 fw-bold">NVIDIA CUDA</h4>
-                            </div>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="tech-content beginner-content">
-                                <p class="text-muted mb-0">CUDA is a parallel computing platform and programming model developed by NVIDIA, while cuDNN is a GPU-accelerated library for deep neural networks. For beginners, these tools may seem technical, but their primary purpose is to accelerate the training of deep learning models by utilizing GPU power. By setting up CUDA and cuDNN properly within the training environment, a significant boost in speed and optimization of model training can be achieved, especially when working with frameworks like TensorFlow and PyTorch.</p>
-                            </div>
-                            <div class="tech-content advanced-content d-none">
-                                <p class="text-muted mb-0">Experts can harness the full power of CUDA and cuDNN to optimize performance in high-demand applications. This includes writing custom CUDA kernels for specific operations, managing GPU memory efficiently, and fine-tuning neural network training for maximum speed and scalability. These tools are essential for developers working with large datasets and needing top-tier performance from their models.</p>
-                            </div>
+                            <h3 class="fw-bold text-dark mb-2">PyTorch</h3>
+                            <p class="text-muted mb-4">Deep Learning Framework</p>
+                            <button class="btn btn-outline-danger rounded-pill px-4 fw-bold mt-auto stretched-link">
+                                Explore <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- YOLO -->
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden">
-                        <div class="card-header bg-primary text-white p-4 border-0">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-eye fa-2x me-3"></i>
-                                <h4 class="mb-0 fw-bold">YOLO</h4>
+                <!-- CUDA Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden tech-card" 
+                         onclick="openTechModal('cuda')"
+                         style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="card-body p-5 text-center d-flex flex-column align-items-center justify-content-center">
+                            <div class="icon-wrapper mb-4 p-4 rounded-circle bg-success-subtle text-success position-relative">
+                                <i class="fas fa-microchip fa-3x"></i>
+                                <div class="pulse-ring bg-success"></div>
                             </div>
+                            <h3 class="fw-bold text-dark mb-2">NVIDIA CUDA</h3>
+                            <p class="text-muted mb-4">GPU Acceleration</p>
+                            <button class="btn btn-outline-success rounded-pill px-4 fw-bold mt-auto stretched-link">
+                                Explore <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
                         </div>
-                        <div class="card-body p-4">
-                            <div class="tech-content beginner-content">
-                                <p class="text-muted mb-0">YOLO (You Only Look Once) is a fast object detection algorithm that is especially popular for real-time applications. Beginners can use pre-trained YOLO models to quickly detect objects in images or videos with relatively simple code. The ease of use makes YOLO a great entry point for those looking to explore object detection without needing to build complex models from scratch.</p>
+                    </div>
+                </div>
+
+                <!-- YOLO Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-lg rounded-4 overflow-hidden tech-card" 
+                         onclick="openTechModal('yolo')"
+                         style="cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="card-body p-5 text-center d-flex flex-column align-items-center justify-content-center">
+                            <div class="icon-wrapper mb-4 p-4 rounded-circle bg-primary-subtle text-primary position-relative">
+                                <i class="fas fa-eye fa-3x"></i>
+                                <div class="pulse-ring bg-primary"></div>
                             </div>
-                            <div class="tech-content advanced-content d-none">
-                                <p class="text-muted mb-0">YOLO provides opportunities for fine-tuning models on custom datasets to detect specific objects, improving detection speed and accuracy. YOLO’s lightweight nature allows it to be deployed in resource-constrained environments, like mobile devices, making it a go-to solution for real-time applications. Professionals can also experiment with newer versions of YOLO, adjusting parameters to fit specific project needs.</p>
-                            </div>
+                            <h3 class="fw-bold text-dark mb-2">YOLO</h3>
+                            <p class="text-muted mb-4">Real-Time Object Detection</p>
+                            <button class="btn btn-outline-primary rounded-pill px-4 fw-bold mt-auto stretched-link">
+                                Explore <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -196,37 +190,160 @@
         </div>
     </section>
 
-    <script>
-        function setTechLevel(level) {
-            const btnBeginner = document.getElementById('btn-beginner');
-            const btnAdvanced = document.getElementById('btn-advanced');
-            const beginnerContents = document.querySelectorAll('.beginner-content');
-            const advancedContents = document.querySelectorAll('.advanced-content');
+    <!-- Tech Detail Modal -->
+    <div class="modal fade" id="techModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header border-0 p-4 bg-light">
+                    <div class="d-flex align-items-center">
+                        <div id="modal-icon-wrapper" class="p-3 rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                            <i id="modal-icon" class="fas fa-code fa-2x"></i>
+                        </div>
+                        <div>
+                            <h3 id="modal-title" class="fw-bold mb-0">Technology</h3>
+                            <p id="modal-subtitle" class="text-muted mb-0 small text-uppercase fw-bold">Overview</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <!-- Tabs -->
+                    <div class="d-flex border-bottom">
+                        <button class="flex-fill btn btn-lg rounded-0 fw-bold py-3 active-tab" id="tab-beginner" onclick="switchModalTab('beginner')">
+                            Beginner
+                        </button>
+                        <button class="flex-fill btn btn-lg rounded-0 fw-bold py-3 text-muted" id="tab-advanced" onclick="switchModalTab('advanced')">
+                            Advanced
+                        </button>
+                    </div>
+                    <!-- Content -->
+                    <div class="p-5">
+                        <div id="content-beginner" class="animate-fade-in">
+                            <p class="lead text-dark" style="line-height: 1.8;">Beginner content goes here.</p>
+                        </div>
+                        <div id="content-advanced" class="d-none animate-fade-in">
+                            <p class="lead text-dark" style="line-height: 1.8;">Advanced content goes here.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-light p-3">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            if (level === 'beginner') {
-                btnBeginner.classList.add('active', 'bg-white', 'shadow-sm', 'text-primary');
-                btnBeginner.classList.remove('text-muted');
-                
-                btnAdvanced.classList.remove('active', 'bg-white', 'shadow-sm', 'text-primary');
-                btnAdvanced.classList.add('text-muted');
-
-                beginnerContents.forEach(el => el.classList.remove('d-none'));
-                advancedContents.forEach(el => el.classList.add('d-none'));
-            } else {
-                btnAdvanced.classList.add('active', 'bg-white', 'shadow-sm', 'text-primary');
-                btnAdvanced.classList.remove('text-muted');
-                
-                btnBeginner.classList.remove('active', 'bg-white', 'shadow-sm', 'text-primary');
-                btnBeginner.classList.add('text-muted');
-
-                advancedContents.forEach(el => el.classList.remove('d-none'));
-                beginnerContents.forEach(el => el.classList.add('d-none'));
-            }
+    <style>
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
         }
         
-        // Init state
-        document.addEventListener('DOMContentLoaded', () => {
-            setTechLevel('beginner');
-        });
+        .pulse-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .active-tab {
+            background-color: #fff;
+            color: var(--bs-primary);
+            border-bottom: 3px solid var(--bs-primary);
+        }
+    </style>
+
+    <script>
+        const techData = {
+            pytorch: {
+                title: "PyTorch",
+                subtitle: "Deep Learning Framework",
+                icon: "fas fa-fire",
+                colorClass: "danger",
+                beginner: "PyTorch, developed by Facebook, is another deep learning framework widely used for building neural networks. Its straightforward, Pythonic nature makes it easy for beginners to grasp the basics of model creation and training. Beginners will appreciate PyTorch’s flexibility in creating simple models for image classification without having to worry about too much technical overhead.",
+                advanced: "Advanced users can use PyTorch’s dynamic computation graph, allowing greater flexibility when building complex architectures, custom loss functions, and optimizers. It’s a great choice for researchers, as PyTorch offers seamless experimentation with cutting-edge models like Vision Language Models, Generative Adversarial Networks (GANs) and deep reinforcement learning. Thanks to its efficient memory management and GPU support, it also excels in handling large datasets."
+            },
+            cuda: {
+                title: "NVIDIA CUDA",
+                subtitle: "GPU Acceleration",
+                icon: "fas fa-microchip",
+                colorClass: "success",
+                beginner: "CUDA is a parallel computing platform and programming model developed by NVIDIA, while cuDNN is a GPU-accelerated library for deep neural networks. For beginners, these tools may seem technical, but their primary purpose is to accelerate the training of deep learning models by utilizing GPU power. By setting up CUDA and cuDNN properly within the training environment, a significant boost in speed and optimization of model training can be achieved, especially when working with frameworks like TensorFlow and PyTorch.",
+                advanced: "Experts can harness the full power of CUDA and cuDNN to optimize performance in high-demand applications. This includes writing custom CUDA kernels for specific operations, managing GPU memory efficiently, and fine-tuning neural network training for maximum speed and scalability. These tools are essential for developers working with large datasets and needing top-tier performance from their models."
+            },
+            yolo: {
+                title: "YOLO",
+                subtitle: "Real-Time Object Detection",
+                icon: "fas fa-eye",
+                colorClass: "primary",
+                beginner: "YOLO (You Only Look Once) is a fast object detection algorithm that is especially popular for real-time applications. Beginners can use pre-trained YOLO models to quickly detect objects in images or videos with relatively simple code. The ease of use makes YOLO a great entry point for those looking to explore object detection without needing to build complex models from scratch.",
+                advanced: "YOLO provides opportunities for fine-tuning models on custom datasets to detect specific objects, improving detection speed and accuracy. YOLO’s lightweight nature allows it to be deployed in resource-constrained environments, like mobile devices, making it a go-to solution for real-time applications. Professionals can also experiment with newer versions of YOLO, adjusting parameters to fit specific project needs."
+            }
+        };
+
+        let currentTech = null;
+
+        function openTechModal(techKey) {
+            const data = techData[techKey];
+            if (!data) return;
+            currentTech = techKey;
+
+            // Update Header
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-subtitle').textContent = data.subtitle;
+            
+            const iconEl = document.getElementById('modal-icon');
+            iconEl.className = data.icon + " fa-2x";
+            
+            const iconWrapper = document.getElementById('modal-icon-wrapper');
+            // Reset classes
+            iconWrapper.className = `p-3 rounded-circle me-3 d-flex align-items-center justify-content-center bg-${data.colorClass}-subtle text-${data.colorClass}`;
+
+            // Update Content
+            document.getElementById('content-beginner').innerHTML = `<p class="lead text-dark" style="line-height: 1.8;">${data.beginner}</p>`;
+            document.getElementById('content-advanced').innerHTML = `<p class="lead text-dark" style="line-height: 1.8;">${data.advanced}</p>`;
+
+            // Reset Tabs to Beginner
+            switchModalTab('beginner');
+
+            // Show Modal
+            const modal = new bootstrap.Modal(document.getElementById('techModal'));
+            modal.show();
+        }
+
+        function switchModalTab(level) {
+            const tabBeginner = document.getElementById('tab-beginner');
+            const tabAdvanced = document.getElementById('tab-advanced');
+            const contentBeginner = document.getElementById('content-beginner');
+            const contentAdvanced = document.getElementById('content-advanced');
+
+            if (level === 'beginner') {
+                tabBeginner.classList.add('active-tab', 'text-primary');
+                tabBeginner.classList.remove('text-muted');
+                tabAdvanced.classList.remove('active-tab', 'text-primary');
+                tabAdvanced.classList.add('text-muted');
+
+                contentBeginner.classList.remove('d-none');
+                contentAdvanced.classList.add('d-none');
+            } else {
+                tabAdvanced.classList.add('active-tab', 'text-primary');
+                tabAdvanced.classList.remove('text-muted');
+                tabBeginner.classList.remove('active-tab', 'text-primary');
+                tabBeginner.classList.add('text-muted');
+
+                contentAdvanced.classList.remove('d-none');
+                contentBeginner.classList.add('d-none');
+            }
+        }
     </script>
 {% endblock %}
